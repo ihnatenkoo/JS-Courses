@@ -1,17 +1,14 @@
-function alphabetPosition(str) {
-  let result = "";
+export function alphabetPosition(string) {
+  const result = [];
   const alphabet = ['a', 'b', 'c', 'd', 'e', 'f','g', 'h', 'i', 'j', 'k', 'l','m', 'n', 'o', 'p', 'q', 'r','s', 't', 'u', 'v', 'w', 'x','y', 'z'];
 
-  for (i of str) {
+  for (const i of string) {
     const index = alphabet.indexOf(i.toLowerCase())+1;
 
     if (index > 0) {
-      result += `${index.toString()} `
+      result.push(index);
     }
   }
-  result = result.trim();
 
-  return result;
+  return result.join(' ');
 }
-
-module.exports = alphabetPosition;

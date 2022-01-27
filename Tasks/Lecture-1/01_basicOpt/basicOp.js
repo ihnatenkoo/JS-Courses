@@ -1,17 +1,14 @@
-function basicOp(operand, a, b) {
-
+export function basicOp(operand, a, b) {
   switch(operand) {
-    case "+":
+    case '+':
       return a + b;
-    case "-":
+    case '-':
       return a - b;
-    case "*":
+    case '*':
       return a * b;
-    case "/":
+    case '/':
       return a / b;
     default:
-      return 0
+      return 0;
   }
 }
-
-module.exports = basicOp;

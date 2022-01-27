@@ -1,18 +1,16 @@
-function isPalindrome(str) {
+export function isPalindrome(sentence) {
 
-  const a = str.split('')
-                .filter(i => i.match(/[A-Za-z0-9]/))
-                .join("")
-                .toLowerCase()
+  const string = sentence.split('')
+    .filter(i => i.match(/[A-Za-z0-9]/))
+    .join('')
+    .toLowerCase();
 
-  const b = str.split('')
-                .reverse()
-                .filter(i => i.match(/[A-Za-z0-9]/))
-                .join("")
-                .toLowerCase()
+  const reverseString = sentence.split('')
+    .reverse()
+    .filter(i => i.match(/[A-Za-z0-9]/))
+    .join('')
+    .toLowerCase();
 
-  return a === b ? true : false;
+  return string === reverseString;
 }
-
-module.exports = isPalindrome;
 

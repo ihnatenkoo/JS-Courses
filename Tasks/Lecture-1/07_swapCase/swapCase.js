@@ -1,17 +1,13 @@
-function swapCase(str) {
-  const arrOfLetters = str.split('');
+export function swapCase(string) {
+  const arrOfLetters = string.split('');
 
-  const swapCaseWord = arrOfLetters.map (i => {
-    if (i === i.toLowerCase()) {
-       return i.toUpperCase()
+  const swapCaseWord = arrOfLetters.map (letter => {
+    if (letter === letter.toLowerCase()) {
+      return letter.toUpperCase();
+    } else {
+      return letter.toLowerCase();
     }
-    else {
-      return i.toLowerCase()
-    }
-  })
-  .join('')
+  }).join('');
 
   return swapCaseWord;
 }
-
-module.exports = swapCase;

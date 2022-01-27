@@ -1,10 +1,8 @@
-function getOperands(str) {
-  const arr =  str.split(' ')
+export function getOperands(expression) {
+  if (expression.match(/[+\-/*]/)) {
+    const arrOfNumber = expression.split(' ').filter(i => !isNaN(i));
+    const result = `a: ${arrOfNumber[0]}, b: ${arrOfNumber[1]}`;
 
-  if (arr.some(i => i == "+" || i == "-" || i == "*" || i == "/")) {
-    const arrOfNumber = arr.filter(i => !isNaN(i));
-    return result = `a: ${arrOfNumber[0]}, b: ${arrOfNumber[1]}`;
+    return result;
   }
 }
-
-module.exports = getOperands;

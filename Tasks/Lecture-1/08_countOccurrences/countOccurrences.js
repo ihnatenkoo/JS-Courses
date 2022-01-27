@@ -1,11 +1,11 @@
-function countOccurrences(str, letter) {
+export function countOccurrences(string, letter) {
   let counter = 0;
-  for (i of str.toLowerCase()) {
+
+  for (const i of string.toLowerCase()) {
     if (i === letter) {
-      counter++
+      counter++;
     }
   }
+
   return counter;
 }
-
-module.exports = countOccurrences;

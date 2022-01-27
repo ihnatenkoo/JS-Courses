@@ -1,30 +1,22 @@
-function getTime(str) {
-  let results = '';
-  let arr = str.split(" ");
+export function getTime(sentence) {
+  let result = '';
 
-  let arrOfTimes = arr.map (i => {
-    if (i.startsWith('0') || i.startsWith('1') || i.startsWith('2')) {
-      return i
-    } else {
-      return ""
+  const timeOfSentence = sentence.match(/[0-9]{2}:[0-9]{2}/g);
+
+  if (timeOfSentence) {
+    for (let i = 0; i < timeOfSentence.length; i++) {
+      const time = timeOfSentence[i].split(':');
+      const hours = time[0];
+      const minutes = time[1];
+  
+      if (hours < 24 && minutes < 60) {
+        result = timeOfSentence[i];
+        break;
+      }
     }
-  })
-  .filter(item => item !== "");
-
-
-  for (i = 0; i< arrOfTimes.length; i++) {
-
-    const time = arrOfTimes[i].split(":");
-    const hours = time[0];
-    const minutes = time[1];
-
-    if (hours < 24 && parseInt(minutes) < 60) {
-      results = `${hours}:${minutes.slice(0,2)}`;
-      break;
-    }
+  
+    return result;
+  } else {
+    return '';
   }
-
-  return results;
 }
-
-module.exports = getTime;

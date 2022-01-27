@@ -1,12 +1,12 @@
-function vowelCount(srt) {
+export function vowelCount(string) {
   let counter = 0;
-  for (i of srt) {
-    if (i == 'a' || i == 'e' || i == 'i' || i == 'o' || i == 'u') {
-      counter++
+
+  for (const letter of string) {
+    if (letter.match(/a|e|i|o|u/)) {
+      counter++;
     }
   }
 
   return counter;
 }
 
-module.exports = vowelCount;
