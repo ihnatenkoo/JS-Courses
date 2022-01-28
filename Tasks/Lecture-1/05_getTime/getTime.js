@@ -16,7 +16,7 @@ export function getTime(sentence) {
     }
   
     return result;
-  } else {
-    return '';
-  }
+  } 
+
+  return ''; 
 }
