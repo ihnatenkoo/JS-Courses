@@ -1,18 +1,18 @@
 export const transformState = (initialState, transforms) => {
-  let state = initialState;
+  let state = {...initialState};
 
-  transforms.forEach(item => {
+  transforms.forEach(transform => {
 
-    switch (item.operation) {
+    switch (transform.operation) {
       case 'addProperties':
         state = {
           ...state, 
-          ...item.properties,
+          ...transform.properties,
         };
         break;
 
       case 'removeProperties':
-        item.properties.forEach(index => {
+        transform.properties.forEach(index => {
           delete state[index];
         });
         break;
