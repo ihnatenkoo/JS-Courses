@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 export const makeArmy = (count) => {
   if (typeof count === 'number') {
     const armyArray = [];
@@ -9,13 +8,14 @@ export const makeArmy = (count) => {
       })(count - 1);
 
       armyArray.unshift(shooter);
+      // eslint-disable-next-line no-param-reassign
       count--;
     }
 
     return armyArray;
   } else {
     console.error(
-      `Error! Value ${count} - is not a number. Pleace pass to the function correct number`,
+      `Error! Value ${count} - is not a number. Pleace pass to the function correct number value`,
     );
   }
 };
