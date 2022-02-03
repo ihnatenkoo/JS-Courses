@@ -1,5 +1,5 @@
 export const calculateRentalCost = (rentalDays) => {
-  if (typeof rentalDays === 'number') {
+  if ('number' === typeof rentalDays) {
     let totalCost;
     const dayCost = 40;
     const discountMore_2_Days = 20;

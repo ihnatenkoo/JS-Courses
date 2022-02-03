@@ -1,3 +1,7 @@
+const ADD_PROPERTIES = 'addProperties';
+const REMOVE_PROPERTIES = 'removeProperties';
+const CLEAR_PROPERTIES = 'clear';
+
 export const transformStateWithClones = (initialState, transforms) => {
   const localState = [];
 
@@ -5,7 +9,7 @@ export const transformStateWithClones = (initialState, transforms) => {
 
     switch (transform.operation) {
 
-      case 'addProperties':
+      case ADD_PROPERTIES:
         if (localState.length === 0) {
           localState[0] = {
             ...initialState,
@@ -21,7 +25,7 @@ export const transformStateWithClones = (initialState, transforms) => {
         }
         break;
 
-      case 'removeProperties': {
+      case REMOVE_PROPERTIES: {
         const newLocalState = {...localState[localState.length - 1]};
   
         transform.properties.forEach(index => {
@@ -31,7 +35,7 @@ export const transformStateWithClones = (initialState, transforms) => {
         break;
       }
    
-      case 'clear':
+      case CLEAR_PROPERTIES:
         localState.push({});
         break;
 

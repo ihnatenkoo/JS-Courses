@@ -1,5 +1,5 @@
 export const isPrime = (number) => {
-  if (typeof number === 'number') {
+  if ('number' === typeof number) {
     let numberIsPrime = true;
 
     if (number <= 1) {

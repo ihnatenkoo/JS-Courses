@@ -1,5 +1,5 @@
 export const reverseWords = (sentense) => {
-  if (typeof sentense === 'string') {
+  if ('string' === typeof sentense) {
     const reverseWordsResult = sentense
       .split(' ')
       .map((word) => {

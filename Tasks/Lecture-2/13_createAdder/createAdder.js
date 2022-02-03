@@ -1,5 +1,5 @@
 export const createAdder = (initialValue = 0) => {
-  if (typeof initialValue === 'number') {
+  if ('number' === typeof initialValue) {
     let total = initialValue;
 
     return (...args) => {

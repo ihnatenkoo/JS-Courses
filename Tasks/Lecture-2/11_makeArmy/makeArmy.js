@@ -1,15 +1,15 @@
 export const makeArmy = (count) => {
-  if (typeof count === 'number') {
+  if ('number' === typeof count) {
     const armyArray = [];
+    let counter = 0;
 
-    while (count > 0) {
+    while (counter !== count) {
       const shooter = ((index) => {
         return () => index;
-      })(count - 1);
+      })(counter);
 
-      armyArray.unshift(shooter);
-      // eslint-disable-next-line no-param-reassign
-      count--;
+      armyArray.push(shooter);
+      counter++;
     }
 
     return armyArray;
