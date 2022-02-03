@@ -5,45 +5,38 @@ const CLEAR_PROPERTIES = 'clear';
 export const transformStateWithClones = (initialState, transforms) => {
   const localState = [];
 
-  transforms.forEach(transform => {
+  transforms.forEach((transform, index) => {
+    const { operation, properties } = transform;
+    const isFirstIndex = 0 === index;
+    const cloneInitialState = isFirstIndex
+      ? { ...initialState }
+      : { ...localState[index - 1] };
 
-    switch (transform.operation) {
-
+    switch (operation) {
       case ADD_PROPERTIES:
-        if (localState.length === 0) {
-          localState[0] = {
-            ...initialState,
-            ...transform.properties,
-          };
-        } else {
-          const newLocalState = {
-            ...localState[localState.length - 1],
-            ...transform.properties,
-          };
+        localState.push({
+          ...cloneInitialState,
+          ...properties,
+        });
 
-          localState.push(newLocalState);
-        }
         break;
 
       case REMOVE_PROPERTIES: {
-        const newLocalState = {...localState[localState.length - 1]};
-  
-        transform.properties.forEach(index => {
-          delete newLocalState[index];
+        properties.forEach((i) => {
+          delete cloneInitialState[i];
         });
-        localState.push(newLocalState);
+        localState.push(cloneInitialState);
         break;
       }
-   
+
       case CLEAR_PROPERTIES:
         localState.push({});
         break;
 
-      default: 
+      default:
         return localState;
     }
   });
 
   return localState;
 };
-

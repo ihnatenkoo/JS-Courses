@@ -66,6 +66,38 @@ const resultsTest2 = [
   },
 ];
 
+const operations = [
+  {
+    operation: 'removeProperties',
+    properties: ['another'],
+  },
+  { operation: 'clear' },
+  { operation: 'clear' },
+  { operation: 'clear' },
+  {
+    operation: 'addProperties',
+    properties: { yet: 'another property' },
+  },
+  { operation: 'clear' },
+  {
+    operation: 'addProperties',
+    properties: {
+      foo: 'bar',
+      name: 'Jim',
+    },
+  },
+  {
+    operation: 'removeProperties',
+    properties: ['name', 'hello'],
+  },
+];
+
+const state = {
+  foo: 'bar',
+  name: 'Jim',
+  another: 'one',
+};
+
 describe('Accep 2 arguments state and transforms. Return array where each element has to represent the state produced by the next operation', () => {
   test('Should work with a long list of operations: addProperties => removeProperties => addProperties', () => {
     expect(
@@ -100,5 +132,22 @@ describe('Accep 2 arguments state and transforms. Return array where each elemen
         },
       ]),
     ).toEqual([{ name: 'Jim' }]);
+  });
+
+  test('Should work with a long list of operations', () => {
+    expect(transformStateWithClones(state, operations)).toEqual([
+      { 
+        foo: 'bar', name: 'Jim',
+      },
+      {},
+      {},
+      {},
+      { yet: 'another property' },
+      {},
+      { 
+        foo: 'bar', name: 'Jim',
+      },
+      { foo: 'bar' },
+    ]);
   });
 });

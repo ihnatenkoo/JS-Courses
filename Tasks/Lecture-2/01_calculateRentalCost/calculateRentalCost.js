@@ -2,13 +2,13 @@ export const calculateRentalCost = (rentalDays) => {
   if ('number' === typeof rentalDays) {
     let totalCost;
     const dayCost = 40;
-    const discountMore_2_Days = 20;
-    const discountMore_6_Days = 50;
+    const discountMore2Days = 20;
+    const discountMore6Days = 50;
 
     if (rentalDays >= 3 && rentalDays < 7) {
-      totalCost = rentalDays * dayCost - discountMore_2_Days;
+      totalCost = rentalDays * dayCost - discountMore2Days;
     } else if (rentalDays >= 7) {
-      totalCost = rentalDays * dayCost - discountMore_6_Days;
+      totalCost = rentalDays * dayCost - discountMore6Days;
     } else {
       totalCost = rentalDays * dayCost;
     }
