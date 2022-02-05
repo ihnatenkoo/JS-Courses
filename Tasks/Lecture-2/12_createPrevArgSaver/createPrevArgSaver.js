@@ -1,5 +1,5 @@
 export const createPrevArgSaver = () => {
-  let previosArgument = undefined;
+  let previosArgument;
 
   return (value) => {
     const returnedArgument = previosArgument;

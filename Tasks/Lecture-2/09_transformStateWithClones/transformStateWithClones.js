@@ -5,12 +5,10 @@ const CLEAR_PROPERTIES = 'clear';
 export const transformStateWithClones = (initialState, transforms) => {
   const localState = [];
 
-  transforms.forEach((transform, index) => {
+  let cloneInitialState = {...initialState};
+
+  transforms.forEach((transform) => {
     const { operation, properties } = transform;
-    const isFirstIndex = 0 === index;
-    const cloneInitialState = isFirstIndex
-      ? { ...initialState }
-      : { ...localState[index - 1] };
 
     switch (operation) {
       case ADD_PROPERTIES:
@@ -18,7 +16,11 @@ export const transformStateWithClones = (initialState, transforms) => {
           ...cloneInitialState,
           ...properties,
         });
-
+        
+        cloneInitialState = {
+          ...cloneInitialState,
+          ...properties,
+        };
         break;
 
       case REMOVE_PROPERTIES: {
@@ -31,6 +33,7 @@ export const transformStateWithClones = (initialState, transforms) => {
 
       case CLEAR_PROPERTIES:
         localState.push({});
+        cloneInitialState = {};
         break;
 
       default:

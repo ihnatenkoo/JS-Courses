@@ -1,24 +1,23 @@
-export const fearNotLetter = (letters) => {
-  if ('string' === typeof letters) {
-    const alphabet = ['a', 'b', 'c', 'd', 'e', 'f','g', 'h', 'i', 'j', 'k', 'l','m', 'n', 'o', 'p', 'q', 'r','s', 't', 'u', 'v', 'w', 'x','y', 'z'];
+export  const fearNotLetter = (stringValue) => {
+  if ('string' === typeof stringValue) {
 
-    let startIndex = alphabet.indexOf(letters[0], 0);
+    const letters  = stringValue.toLowerCase();
+    let startCharCode = letters.charCodeAt(0);
 
     for (let i = 0; i < letters.length; i++) {
-      if (letters[i] === alphabet[startIndex]) {
-        startIndex++;
+      const charCode = letters.charCodeAt(i);
+
+      if (charCode === startCharCode) {
+        startCharCode++;
+
       } else {
-      
-        return alphabet[startIndex];
+
+        return String.fromCharCode(startCharCode);
       }
     }
-
+  
     return undefined;
   } else {
-    console.error(
-      `Error! Value ${letters} - is not a string. Pleace pass to the function correct string value`,
-    );
+    throw new Error(`Error! Value ${stringValue} - is not a string. Pleace pass to the function correct string value`);
   }
-  
 };
-
