@@ -107,7 +107,7 @@ describe('Accep 2 arguments state and transforms. Return array where each elemen
           bar: 'foo',
         },
         transformsArray1,
-      ),
+      ).localState,
     ).toEqual(resultTest1);
   });
 
@@ -119,7 +119,7 @@ describe('Accep 2 arguments state and transforms. Return array where each elemen
           bar: 'foo',
         },
         transformsArray2,
-      ),
+      ).localState,
     ).toEqual(resultsTest2);
   });
 
@@ -130,12 +130,12 @@ describe('Accep 2 arguments state and transforms. Return array where each elemen
           operation: 'addProperties',
           properties: { name: 'Jim' },
         },
-      ]),
+      ]).localState,
     ).toEqual([{ name: 'Jim' }]);
   });
 
   test('Should work with a long list of operations', () => {
-    expect(transformStateWithClones(state, operations)).toEqual([
+    expect(transformStateWithClones(state, operations).localState).toEqual([
       { 
         foo: 'bar', name: 'Jim',
       },
@@ -149,5 +149,15 @@ describe('Accep 2 arguments state and transforms. Return array where each elemen
       },
       { foo: 'bar' },
     ]);
+  });
+
+  test('Test that the incoming parameters were not mutated', () => {
+    const state1 = {
+      foo: 'bar',
+      bar: 'foo',
+    };
+
+    expect(transformStateWithClones(state1, transformsArray1).initialState).toBe(state1);
+    expect(transformStateWithClones(state1, transformsArray2).initialState).toBe(state1);
   });
 });

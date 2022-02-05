@@ -41,5 +41,8 @@ export const transformStateWithClones = (initialState, transforms) => {
     }
   });
 
-  return localState;
+  return {
+    localState, 
+    initialState,
+  };
 };
