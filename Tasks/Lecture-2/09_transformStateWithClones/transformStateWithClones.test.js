@@ -107,7 +107,7 @@ describe('Accep 2 arguments state and transforms. Return array where each elemen
           bar: 'foo',
         },
         transformsArray1,
-      ).localState,
+      ),
     ).toEqual(resultTest1);
   });
 
@@ -119,7 +119,7 @@ describe('Accep 2 arguments state and transforms. Return array where each elemen
           bar: 'foo',
         },
         transformsArray2,
-      ).localState,
+      ),
     ).toEqual(resultsTest2);
   });
 
@@ -130,34 +130,44 @@ describe('Accep 2 arguments state and transforms. Return array where each elemen
           operation: 'addProperties',
           properties: { name: 'Jim' },
         },
-      ]).localState,
+      ]),
     ).toEqual([{ name: 'Jim' }]);
   });
 
   test('Should work with a long list of operations', () => {
-    expect(transformStateWithClones(state, operations).localState).toEqual([
-      { 
-        foo: 'bar', name: 'Jim',
+    expect(transformStateWithClones(state, operations)).toEqual([
+      {
+        foo: 'bar',
+        name: 'Jim',
       },
       {},
       {},
       {},
       { yet: 'another property' },
       {},
-      { 
-        foo: 'bar', name: 'Jim',
+      {
+        foo: 'bar',
+        name: 'Jim',
       },
       { foo: 'bar' },
     ]);
   });
 
-  test('Test that the incoming parameters were not mutated', () => {
-    const state1 = {
+  test('Test that the incoming parameters is not modified', () => {
+    const initialState = {
       foo: 'bar',
       bar: 'foo',
     };
 
-    expect(transformStateWithClones(state1, transformsArray1).initialState).toBe(state1);
-    expect(transformStateWithClones(state1, transformsArray2).initialState).toBe(state1);
+    const expectedInitialState = {
+      foo: 'bar',
+      bar: 'foo',
+    };
+
+    expect(
+      transformStateWithClones(initialState, transformsArray1),
+    ).toStrictEqual(resultTest1);
+
+    expect(expectedInitialState).toEqual(initialState);
   });
 });

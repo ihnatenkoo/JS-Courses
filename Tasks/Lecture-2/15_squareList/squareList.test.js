@@ -12,4 +12,30 @@ describe('squareList function accepts array of munber and should return a new ar
       9, 100, 49,
     ]);
   });
+
+  test('Shuld throw error when pass incorect value', () => {
+    expect(() => squareList(123)).toThrowError(
+      'Error! Value 123 - is not an Array. Pleace pass to the function correct value',
+    );
+
+    expect(() => squareList('123')).toThrowError(
+      'Error! Value 123 - is not an Array. Pleace pass to the function correct value',
+    );
+
+    expect(() => squareList({ a: 1 })).toThrowError(
+      'Error! Value [object Object] - is not an Array. Pleace pass to the function correct value',
+    );
+
+    expect(() => squareList(true)).toThrowError(
+      'Error! Value true - is not an Array. Pleace pass to the function correct value',
+    );
+
+    expect(() => squareList(null)).toThrowError(
+      'Error! Value null - is not an Array. Pleace pass to the function correct value',
+    );
+
+    expect(() => squareList(undefined)).toThrowError(
+      'Error! Value undefined - is not an Array. Pleace pass to the function correct value',
+    );
+  });
 });

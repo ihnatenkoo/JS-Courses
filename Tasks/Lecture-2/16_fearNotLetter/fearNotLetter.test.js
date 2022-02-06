@@ -16,19 +16,30 @@ describe('fearNotLetter accepts string of letters. Find the missing letter in th
   test('Should return undefined, when pass full alphabet', () => {
     expect(fearNotLetter('abcdefghijklmnopqrstuvwxyz')).toBe(undefined);
   });
- 
+
   test('Shuld throw error when pass incorect value', () => {
-    expect(() => fearNotLetter(123)).toThrowError('Error! Value 123 - is not a string. Pleace pass to the function correct string value');
+    expect(() => fearNotLetter(123)).toThrowError(
+      'Error! Value 123 - is not a string. Pleace pass to the function correct value',
+    );
 
-    expect(() => fearNotLetter([1,2,3])).toThrowError('Error! Value 1,2,3 - is not a string. Pleace pass to the function correct string value');
+    expect(() => fearNotLetter([1, 2, 3])).toThrowError(
+      'Error! Value 1,2,3 - is not a string. Pleace pass to the function correct value',
+    );
 
-    expect(() => fearNotLetter({a: 1})).toThrowError('Error! Value [object Object] - is not a string. Pleace pass to the function correct string');
+    expect(() => fearNotLetter({ a: 1 })).toThrowError(
+      'Error! Value [object Object] - is not a string. Pleace pass to the function correct value',
+    );
 
-    expect(() => fearNotLetter(true)).toThrowError('Error! Value true - is not a string. Pleace pass to the function correct string value');
+    expect(() => fearNotLetter(true)).toThrowError(
+      'Error! Value true - is not a string. Pleace pass to the function correct value',
+    );
 
-    expect(() => fearNotLetter(null)).toThrowError('Error! Value null - is not a string. Pleace pass to the function correct string value');
-    
-    expect(() => fearNotLetter(undefined)).toThrowError('Error! Value undefined - is not a string. Pleace pass to the function correct string value');
+    expect(() => fearNotLetter(null)).toThrowError(
+      'Error! Value null - is not a string. Pleace pass to the function correct value',
+    );
+
+    expect(() => fearNotLetter(undefined)).toThrowError(
+      'Error! Value undefined - is not a string. Pleace pass to the function correct value',
+    );
   });
 });
-

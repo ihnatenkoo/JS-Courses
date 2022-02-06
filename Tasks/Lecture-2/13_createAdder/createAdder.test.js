@@ -30,4 +30,26 @@ describe('createAdder returning the sum of initialValue and all the arguments of
   test('Then Should return 200, when pass empty arguments()', () => {
     expect(adder2()).toBe(200);
   });
+
+  test('Shuld throw error when pass incorect value', () => {
+    expect(() => createAdder([1, 2, 3])).toThrowError(
+      'Error! Value 1,2,3 - is not a Number. Pleace pass to the function correct value',
+    );
+
+    expect(() => createAdder('123')).toThrowError(
+      'Error! Value 123 - is not a Number. Pleace pass to the function correct value',
+    );
+
+    expect(() => createAdder({ a: 1 })).toThrowError(
+      'Error! Value [object Object] - is not a Number. Pleace pass to the function correct value',
+    );
+
+    expect(() => createAdder(true)).toThrowError(
+      'Error! Value true - is not a Number. Pleace pass to the function correct value',
+    );
+
+    expect(() => createAdder(null)).toThrowError(
+      'Error! Value null - is not a Number. Pleace pass to the function correct value',
+    );
+  });
 });

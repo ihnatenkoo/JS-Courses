@@ -14,4 +14,30 @@ describe('makeArmy takes count and generates an array with count elements. Each 
   test('Should return 9, when pass shooters[9]()', () => {
     expect(shooters[9]()).toBe(9);
   });
+
+  test('Shuld throw error when pass incorect value', () => {
+    expect(() => makeArmy([1, 2, 3])).toThrowError(
+      'Error! Value 1,2,3 - is not a Number. Pleace pass to the function correct value',
+    );
+
+    expect(() => makeArmy('123')).toThrowError(
+      'Error! Value 123 - is not a Number. Pleace pass to the function correct value',
+    );
+
+    expect(() => makeArmy({ a: 1 })).toThrowError(
+      'Error! Value [object Object] - is not a Number. Pleace pass to the function correct value',
+    );
+
+    expect(() => makeArmy(true)).toThrowError(
+      'Error! Value true - is not a Number. Pleace pass to the function correct value',
+    );
+
+    expect(() => makeArmy(null)).toThrowError(
+      'Error! Value null - is not a Number. Pleace pass to the function correct value',
+    );
+
+    expect(() => makeArmy(undefined)).toThrowError(
+      'Error! Value undefined - is not a Number. Pleace pass to the function correct value',
+    );
+  });
 });

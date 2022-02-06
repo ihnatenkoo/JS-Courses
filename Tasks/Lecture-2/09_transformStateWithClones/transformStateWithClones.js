@@ -5,7 +5,7 @@ const CLEAR_PROPERTIES = 'clear';
 export const transformStateWithClones = (initialState, transforms) => {
   const localState = [];
 
-  let cloneInitialState = {...initialState};
+  let cloneInitialState = { ...initialState };
 
   transforms.forEach((transform) => {
     const { operation, properties } = transform;
@@ -16,7 +16,7 @@ export const transformStateWithClones = (initialState, transforms) => {
           ...cloneInitialState,
           ...properties,
         });
-        
+
         cloneInitialState = {
           ...cloneInitialState,
           ...properties,
@@ -41,8 +41,5 @@ export const transformStateWithClones = (initialState, transforms) => {
     }
   });
 
-  return {
-    localState, 
-    initialState,
-  };
+  return localState;
 };
