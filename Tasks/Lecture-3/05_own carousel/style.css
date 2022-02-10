@@ -13,10 +13,18 @@ body {
   align-items: center;
 }
 
-.container {
+.slider {
+  position: relative;
   width: 100%;
   display: flex;
   padding: 0 20px;
+}
+
+.slider__nav {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .slide {
@@ -47,4 +55,41 @@ body {
 .slide.active h2 {
   opacity: 1;
   transition: opacity 0.3s ease-in 0.5s;
+}
+
+.btn {
+  margin-right: 40px;
+  width: 45px;
+  height: 45px;
+  background-color: #e74c3c;
+  border: none;
+  border-radius: 3px;
+  position: relative;
+  cursor: pointer;
+
+  transition: all .2s linear;
+}
+.btn:hover {
+   background-color: #bd4639;
+}
+
+.btn:before {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  border: 3px solid white;
+  transform: translate3d(-50%,-50%, 0) rotate(45deg);
+  top: 50%;
+  left: 50%;
+  border-radius: 2px;
+}
+
+.btn.btn-next:before  {
+  border-bottom: 0px;
+  border-left: 0px;
+}
+.btn.btn-prev:before  {
+  border-top: 0px;
+  border-right: 0px;
 }
