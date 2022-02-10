@@ -12,6 +12,5 @@ export const squareList = (initialArray) => {
       }
 
       return prevState;
-    }, [])
-    .filter(Boolean);
+    }, []);
 };

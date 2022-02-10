@@ -12,15 +12,12 @@ export const transformStateWithClones = (initialState, transforms) => {
 
     switch (operation) {
       case ADD_PROPERTIES:
-        localState.push({
-          ...cloneInitialState,
-          ...properties,
-        });
-
         cloneInitialState = {
           ...cloneInitialState,
           ...properties,
         };
+
+        localState.push({ ...cloneInitialState });
         break;
 
       case REMOVE_PROPERTIES: {
@@ -32,8 +29,8 @@ export const transformStateWithClones = (initialState, transforms) => {
       }
 
       case CLEAR_PROPERTIES:
-        localState.push({});
         cloneInitialState = {};
+        localState.push({...cloneInitialState});
         break;
 
       default:

@@ -34,28 +34,16 @@ describe('invertObject inverts an object. Every `key: value` should be `value: k
   });
 
   test('Shuld throw error when pass incorect value', () => {
-    expect(() => invertObject([1, 2, 3])).toThrowError(
-      'Error! Value 1,2,3 - is not an Object. Pleace pass to the function correct value',
-    );
+    expect(() => invertObject([1, 2, 3])).toThrowError();
 
-    expect(() => invertObject('123')).toThrowError(
-      'Error! Value 123 - is not an Object. Pleace pass to the function correct value',
-    );
+    expect(() => invertObject('123')).toThrowError(Error);
 
-    expect(() => invertObject(1)).toThrowError(
-      'Error! Value 1 - is not an Object. Pleace pass to the function correct value',
-    );
+    expect(() => invertObject(1)).toThrowError(Error);
 
-    expect(() => invertObject(true)).toThrowError(
-      'Error! Value true - is not an Object. Pleace pass to the function correct value',
-    );
+    expect(() => invertObject(true)).toThrowError(Error);
 
-    expect(() => invertObject(null)).toThrowError(
-      'Error! Value null - is not an Object. Pleace pass to the function correct value',
-    );
+    expect(() => invertObject(null)).toThrowError(Error);
 
-    expect(() => invertObject(undefined)).toThrowError(
-      'Error! Value undefined - is not an Object. Pleace pass to the function correct value',
-    );
+    expect(() => invertObject(undefined)).toThrowError(Error);
   });
 });
