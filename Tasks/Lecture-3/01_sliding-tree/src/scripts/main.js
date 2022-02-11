@@ -1,18 +1,20 @@
 'use strict';
 
-const menuLink = document.querySelectorAll('.menu__link');
-const subMenu = document.querySelectorAll('.sub-menu');
-const subMenuLink = document.querySelectorAll('.sub-menu__link');
-const subMenuOptions = document.querySelectorAll('.sub-menu__options');
+const tree = document.querySelector('.tree');
+const ul = tree.querySelectorAll('ul');
 
-const menuAnimate = (element, link) => {
-  link.forEach((item, i) => {
-    item.addEventListener('click', () => {
-      element[i].classList.toggle('show');
-      link[i].classList.toggle('active');
-    });
-  });
-};
+ul.forEach((item) => {
+  item.classList.add('hide');
+});
 
-menuAnimate(subMenu, menuLink);
-menuAnimate(subMenuOptions, subMenuLink);
+tree.addEventListener('click', (event) => {
+  const target = event.target;
+
+  if (target.parentElement.tagName === 'UL') {
+    if (target.firstElementChild) {
+      target.firstElementChild.classList.toggle('hide');
+      target.classList.toggle('active');
+      target.classList.toggle('menu-in');
+    }
+  }
+});

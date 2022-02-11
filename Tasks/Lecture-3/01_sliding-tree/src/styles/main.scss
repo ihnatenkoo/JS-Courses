@@ -7,52 +7,29 @@ body {
   font-size: 22px;
 }
 
-.menu__link {
+li {
   cursor: pointer;
-
-  &:hover,
-  &.active {
-    font-weight: 700;
-  }
+}
+ul {
+   animation: 0.3s linear menu-in;
 }
 
-.sub-menu {
+ul> li {
+  font-weight: 400;
+}
+ul> li.active {
+  font-weight: 700;
+}
+ul> li:hover {
+  font-weight: 700;
+}
+
+.active {
+  font-weight: 700;
+}
+
+.hide {
   display: none;
-  opacity: 0;
-
-  cursor: pointer;
-  transition: all 1s linear;
-
-  &.show {
-    display: block;
-    animation: 0.3s linear menu-in;
-    opacity: 1;
-  }
-
-  &__link {
-    &:hover,
-    &.active {
-      font-weight: 700;
-    }
-  }
-
-  &__options {
-    display: none;
-    opacity: 0;
-
-    &.show {
-      display: block;
-      animation: 0.3s linear menu-in;
-      opacity: 1;
-    }
-
-    li {
-      transition: all 0.1s linear;
-    }
-    li:hover {
-      font-weight: 700;
-    }
-  }
 }
 
 @keyframes menu-in {
