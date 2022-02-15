@@ -18,13 +18,12 @@ const userWithPostAndComments = async() => {
   const userList = users.map(user => {
     const userPosts = posts.filter(post => user.id === post.userId);
 
-    user.posts = userPosts;
-
-    const userPostComments = userPosts.map(postComments => {
-      return comments.filter((comment) => comment.postId === postComments.id);
+    const userPostAndComments = userPosts.map(post => {
+      const commentsForPost = comments.filter((comment) => comment.postId === post.id);
+      return { ...post, comments: commentsForPost };
     })
 
-    user.comments = userPostComments;
+    user.posts = userPostAndComments;
 
     return user;
   });
