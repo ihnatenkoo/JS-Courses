@@ -1,0 +1,72 @@
+h1 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  background: #eee;
+  font-size: 22px;
+}
+
+.menu__link {
+  cursor: pointer;
+}
+.menu__link:hover, .menu__link.active {
+  font-weight: 700;
+}
+
+.sub-menu {
+  display: none;
+  opacity: 0;
+  cursor: pointer;
+  transition: all 1s linear;
+}
+.sub-menu.show {
+  display: block;
+  animation: 0.3s linear menu-in;
+  opacity: 1;
+}
+.sub-menu__link:hover, .sub-menu__link.active {
+  font-weight: 700;
+}
+
+.sub-menu__options {
+  display: none;
+  opacity: 0;
+}
+.sub-menu__options.show {
+  display: block;
+  animation: 0.3s linear menu-in;
+  opacity: 1;
+}
+.sub-menu__options li {
+  transition: all 0.1s linear;
+}
+.sub-menu__options li:hover {
+  font-weight: 700;
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes menu-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */
