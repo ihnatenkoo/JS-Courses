@@ -20,9 +20,8 @@ const getCompletedTasks = async () => {
       (todo) => todo.userId === user.id && todo.completed
     );
 
-    user.completedTasks = userCompletedTodo;
+    user.todo = userCompletedTodo;
 
     return user;  
   });
 };
-

@@ -1,4 +1,4 @@
-import fetch from 'cross-fetch';
+// import fetch from 'cross-fetch';
 
 const sortByCategory = (a, b) => {
   const categoryA = a.category.toLowerCase();

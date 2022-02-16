@@ -33,5 +33,13 @@ describe('Axios GET request', () => {
       },
     );
   });
+
+  test('should catch error', async () => {
+    try {
+      await getData('https://jsonplaceholder.typicode.com/users');
+    } catch (error) {
+      expect(error.message).toBe('Error');
+    }
+  });
 });
 
