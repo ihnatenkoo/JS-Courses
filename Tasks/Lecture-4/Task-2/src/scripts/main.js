@@ -1,17 +1,19 @@
-export const getData = async(url) => {
+const getData = async (url) => {
   try {
     const response = await fetch(url);
 
+    console.log(response);
+
     const data = await response.json();
+    console.log(data);
 
     return data;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-
 };
 
-const getCompletedTasks = async () => {
+export const getCompletedTasks = async () => {
   const userList = await getData('https://jsonplaceholder.typicode.com/users');
   const todoList = await getData('https://jsonplaceholder.typicode.com/todos');
 
@@ -22,6 +24,6 @@ const getCompletedTasks = async () => {
 
     user.todo = userCompletedTodo;
 
-    return user;  
+    return user;
   });
 };

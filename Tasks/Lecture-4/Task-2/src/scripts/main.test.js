@@ -1,31 +1,58 @@
-import { getData } from './main';
+import { getCompletedTasks } from './main';
 
 global.fetch = jest.fn(() =>
   Promise.resolve({
-    json: () => Promise.resolve([{ category: 'a' }, { category: 'b' }]),
+    json: () => Promise.resolve(),
   })
 );
 
-describe('GET request', () => {
-  beforeEach(() => {
-    fetch.mockImplementationOnce(() =>
-      Promise.resolve({
-        json: () => Promise.resolve([{ category: 'a' }, { category: 'b' }]),
-      })
+beforeEach(() => {
+  fetch.mockImplementationOnce(() =>
+    Promise.resolve({
+      json: () => Promise.resolve(users),
+    })
+  );
+});
+
+beforeEach(() => {
+  fetch.mockImplementationOnce(() =>
+    Promise.resolve({
+      json: () => Promise.resolve(todo),
+    })
+  );
+});
+
+beforeEach(() => fetch.mockClear());
+
+const users = [{ id: 1, name: 'Alex' }];
+
+const todo = [
+  { userId: 1, title: 'work', completed: true },
+  { userId: 1, title: 'shopping', completed: false },
+];
+
+describe('Added completed Tasks in users todo list', () => {
+  test('should return data with user completed tasks', async () => {
+    const result = await getCompletedTasks();
+
+    expect(result).toEqual([
+      {
+        id: 1,
+        name: 'Alex',
+        todo: [{ userId: 1, title: 'work', completed: true }],
+      },
+    ]);
+  });
+
+  test('should called 2 times with correct links', async () => {
+    await getCompletedTasks();
+
+    expect(fetch).toHaveBeenCalledTimes(2);
+    expect(fetch).toHaveBeenCalledWith(
+      'https://jsonplaceholder.typicode.com/users'
     );
-  });
-
-  test('should return value from backend', async () => {
-    const result = await getData('https://jsonplaceholder.typicode.com/users');
-
-    expect(result).toEqual([{ category: 'a' }, { category: 'b' }]);
-  });
-
-  test('should catch error', async () => {
-    try {
-      await getData('https://jsonplaceholder.typicode.com/users');
-    } catch (error) {
-      expect(error.message).toBe('Error');
-    }
+    expect(fetch).toHaveBeenCalledWith(
+      'https://jsonplaceholder.typicode.com/todos'
+    );
   });
 });
