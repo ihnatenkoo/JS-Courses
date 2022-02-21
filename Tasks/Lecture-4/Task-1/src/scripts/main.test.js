@@ -1,17 +1,23 @@
-import { getData } from './main';
+import { getData, sortData } from './main';
 
 global.fetch = jest.fn(() =>
   Promise.resolve({
-    json: () => Promise.resolve([{ category: 'a' }, { category: 'b' }]),
+    json: () => Promise.resolve(),
   })
 );
 
-describe('GET request', () => {
+beforeEach(() => fetch.mockClear());
 
+describe('Data request with sort function', () => {
   beforeEach(() => {
     fetch.mockImplementationOnce(() =>
       Promise.resolve({
-        json: () => Promise.resolve([{ category: 'a' }, { category: 'b' }]),
+        json: () =>
+          Promise.resolve([
+            { category: 'b' },
+            { category: 'c' },
+            { category: 'a' },
+          ]),
       })
     );
   });
@@ -19,15 +25,26 @@ describe('GET request', () => {
   test('should return value from backend', async () => {
     const result = await getData('https://fakestoreapi.com/products');
 
-    expect(result).toEqual([{ category: 'a' }, { category: 'b' }]);
+    expect(result).toEqual([
+      { category: 'b' },
+      { category: 'c' },
+      { category: 'a' },
+    ]);
   });
 
-  test('should catch error', async () => {
-    try {
-      await getData('https://fakestoreapi.com/products');
-    }
-    catch (error) {
-      expect(error.message).toBe('Error');
-    }
+  test('should sorted initial array', async () => {
+    const result = await sortData();
+
+    expect(result).toEqual([
+      { category: 'a' },
+      { category: 'b' },
+      { category: 'c' },
+    ]);
+  });
+
+  test('fetch should be called once with https://fakestoreapi.com/products', async () => {
+    await sortData();
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(fetch).toHaveBeenCalledWith('https://fakestoreapi.com/products');
   });
 });

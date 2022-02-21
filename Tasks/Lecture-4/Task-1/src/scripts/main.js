@@ -14,10 +14,8 @@ const sortByPrice = (a, b) => b.price - a.price;
 
 const sortByCategory = (a, b) => a.category.localeCompare(b.category);
 
-const sortData = async () => {
+export const sortData = async () => {
   const productsList = await getData('https://fakestoreapi.com/products');
 
   return productsList.sort(sortByPrice).sort(sortByCategory);
 };
-
-
